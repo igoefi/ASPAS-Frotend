@@ -1,0 +1,24 @@
+﻿<Application x:Class="ASPAS.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ASPAS"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ComboBox/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBox/ComboBoxItemStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/IndicatorsTitleTextStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/DataGridIndicatorsStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/DataGridCellStyle.xaml"/>
+                
+                <ResourceDictionary Source="/Styles/SCrollBar/ScrollBarLineButtonBottomStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/SCrollBar/ScrollBarLineButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/SCrollBar/ScrollBarPageButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/SCrollBar/ScrollBarThumbStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/SCrollBar/VerticalScrollBarStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>
