@@ -1,19 +1,10 @@
-﻿using ASPAS.Classes.BetaModels;
+﻿using ASPAS.Classes;
+using ASPAS.Classes.BetaModels;
+using ASPAS.Classes.Enums;
 using ASPAS.Pages.Blueprints;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ASPAS.Pages
 {
@@ -23,57 +14,34 @@ namespace ASPAS.Pages
     public partial class PageMain : Page
     {
         #region BetaData
-        private Dictionary<string, Dictionary<string, Page>> _manufactures = new Dictionary<string, Dictionary<string, Page>>();
-        private Dictionary<string, Page> _blueprints = new Dictionary<string, Page>();
+        private readonly Dictionary<string, Dictionary<string, ISetModels>> _manufactures = new Dictionary<string, Dictionary<string, ISetModels>>();
+        private readonly Dictionary<string, ISetModels> _blueprints = new Dictionary<string, ISetModels>();
 
-        private Dictionary<string, Page> _selectedBlueprints;
+        private Dictionary<string, ISetModels> _selectedBlueprints;
 
-        private List<BetaModel> _problems = new List<BetaModel>() {
-            new BetaModel() {Id = 1, Name = "Problems 1"},
-            new BetaModel() {Id = 2, Name = "Problems 2"},
-            new BetaModel() {Id = 3, Name = "Problems 3"},
-            new BetaModel() {Id = 4, Name = "Problems 4"},
-            new BetaModel() {Id = 5, Name = "Problems 5"},
-            new BetaModel() {Id = 6, Name = "Problems 6"},
-            new BetaModel() {Id = 7, Name = "Problems 7"},
-            new BetaModel() {Id = 1, Name = "Problems 8"},
+        private readonly List<BetaModel> _realTime1 = new List<BetaModel>() {
+            new BetaModel() {Name = "Параметр 1", Arg = "xf", Error = new ErrorClass { Error = Error.Alert, Message = "dasd"} },
+            new BetaModel() {Name = "Параметр 2", Arg = "1121f", Error = new ErrorClass { Error = Error.None, Message = "dacvsdsd"}},
+            new BetaModel() {Name = "Параметр 3", Arg = "cf1f", Error = new ErrorClass { Error = Error.Error, Message = "daqwsd"}},
+            new BetaModel() {Name = "Параметр 4", Arg = "2sd1f", Error = new ErrorClass { Error = Error.None, Message = "d6458asd"}}
         };
-
-        private List<BetaModel> _realTimes = new List<BetaModel>() {
-            new BetaModel() {Id = 1, Name = "RealTime 1"},
-            new BetaModel() {Id = 2, Name = "RealTime 2"},
-            new BetaModel() {Id = 3, Name = "RealTime 3"},
-            new BetaModel() {Id = 4, Name = "RealTime 4"},
-            new BetaModel() {Id = 5, Name = "RealTime 5"},
-            new BetaModel() {Id = 6, Name = "RealTime 6"},
-            new BetaModel() {Id = 7, Name = "RealTime 7"},
-            new BetaModel() {Id = 8, Name = "RealTime 8"},
-        };
-
-        private List<BetaModel> _recommendeds = new List<BetaModel>() {
-            new BetaModel() {Id = 1, Name = "Recommended 1"},
-            new BetaModel() {Id = 2, Name = "Recommended 2"},
-            new BetaModel() {Id = 3, Name = "Recommended 3"},
-            new BetaModel() {Id = 4, Name = "Recommended 4"},
-            new BetaModel() {Id = 5, Name = "Recommended 5"},
-            new BetaModel() {Id = 6, Name = "Recommended 6"},
-            new BetaModel() {Id = 7, Name = "Recommended 7"},
-            new BetaModel() {Id = 8, Name = "Recommended 8"},
+        private readonly List<BetaModel> _realTime2 = new List<BetaModel>() {
+            new BetaModel() {Name = "Параметр 1", Arg = "xf", Error = new ErrorClass { Error = Error.Error, Message = "dasd"} },
+            new BetaModel() {Name = "Параметр 2", Arg = "1121f", Error = new ErrorClass { Error = Error.Error, Message = "dacvsdsd"}},
+            new BetaModel() {Name = "Параметр 4", Arg = "cf1f", Error = new ErrorClass { Error = Error.Alert, Message = "daqwsd"}},
+            new BetaModel() {Name = "Параметр 4", Arg = "2sd1f", Error = new ErrorClass { Error = Error.Error, Message = "d6458asd"}}
         };
         #endregion
 
         public PageMain()
         {
             InitializeComponent();
-            _blueprints.Add("Схема1", new Blueprint1());
-            _blueprints.Add("Схема2", new Blueprint2());
+
+            _blueprints.Add("Схема1", new Blueprint1(_realTime1));
+            _blueprints.Add("Схема2", new Blueprint1(_realTime2));
             _manufactures.Add("Цех 1", _blueprints);
             _manufactures.Add("Цех 2", _blueprints);
             CmbBoxManufactory.ItemsSource = _manufactures.Keys;
-
-            GridRealTimeList.ItemsSource = _realTimes;
-            GridProblemsList.ItemsSource = _problems;
-            GridRecomList.ItemsSource = _recommendeds;
 
             ProfileLogin.Visibility = Visibility.Visible;
         }
@@ -128,6 +96,8 @@ namespace ASPAS.Pages
             var selectedBlueprint = (string)CmbBoxBlueprints.SelectedItem;
             if (selectedBlueprint == null) return;
             FrmBlueprints.Navigate(_selectedBlueprints[selectedBlueprint]);
+            SetIndicators();
+
             IndicatorsGrids.Visibility = Visibility.Visible;
         }
 
@@ -135,7 +105,7 @@ namespace ASPAS.Pages
         {
             var manufacture = (string)CmbBoxManufactory.SelectedItem;
             _selectedBlueprints = _manufactures[manufacture];
-            CmbBoxBlueprints.ItemsSource =  _selectedBlueprints.Keys;
+            CmbBoxBlueprints.ItemsSource = _selectedBlueprints.Keys;
             CmbBoxBlueprints.SelectedIndex = 0;
             CmbBoxBlueprints.IsEnabled = true;
         }
@@ -144,23 +114,7 @@ namespace ASPAS.Pages
         private void BtnRealTime_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
-            MessageBox.Show(button.ContentStringFormat);
-        }
-
-        private void BtnRecommended_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        private void BtnProblems_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnClickErrorButton(object sender, RoutedEventArgs e)
-        {
-
+            MessageBox.Show(button.Content.ToString());
         }
 
         private void BtnClickLogin(object sender, RoutedEventArgs e)
@@ -174,6 +128,51 @@ namespace ASPAS.Pages
         private void BtnClickExitProfileLogin(object sender, RoutedEventArgs e) =>
             ProfileLogin.Visibility = Visibility.Hidden;
 
+        private void SetIndicators()
+        {
+            var selectedBlueprint = (string)CmbBoxBlueprints.SelectedItem;
+            var selectedManufacture = (string)CmbBoxManufactory.SelectedItem;
 
+            if (selectedBlueprint == null || selectedManufacture == null) return;
+
+            var models = _manufactures[selectedManufacture][selectedBlueprint].Models;
+
+            GridRealTimeList.ItemsSource = models;
+            GridRecomList.ItemsSource = GetTypeModels(models, Error.Alert);
+            GridProblemsList.ItemsSource = GetTypeModels(models, Error.Error);
+        }
+
+        private List<BetaModel> GetTypeModels(List<BetaModel> originalModels, Error errorType)
+        {
+            var needModels = new List<BetaModel>();
+            foreach (var model in originalModels)
+                if(model.Error.Error == errorType)
+                    needModels.Add(model);
+            return needModels;
+        }
+
+        private void BtnClickShowErrorMessage(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var name = button.FontFamily.Source;
+
+            var errorMessage = GetErrorMessage(name);
+
+            if (errorMessage == null) return;
+
+            MessageBox.Show(errorMessage);
+        }
+
+        private string GetErrorMessage(string indicatorName)
+        {
+            var selectedBlueprint = (string)CmbBoxBlueprints.SelectedItem;
+            var selectedManufacture = (string)CmbBoxManufactory.SelectedItem;
+            var models = _manufactures[selectedManufacture][selectedBlueprint].Models;
+
+            foreach (var model in models)
+                if (model.Name == indicatorName)
+                    return model.Error.Message;
+            return null;
+        }
     }
 }

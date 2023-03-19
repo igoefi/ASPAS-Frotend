@@ -8,6 +8,7 @@
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="#3A3C75"/>
                 <Setter Property="BorderBrush" Value="#3A3C75"/>
+                <Setter Property="FontFamily" Value="Inter"/>
             </Trigger>
         </Style.Triggers>    
     </Style>

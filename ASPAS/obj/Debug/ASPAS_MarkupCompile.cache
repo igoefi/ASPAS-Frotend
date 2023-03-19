@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-L:\TelegramBot\ASPAS\ASPAS\ASPAS\obj\Debug\
+L:\TelegramBot\ASPAS-Frotend\ASPAS\obj\Debug\
 ASPAS
 none
 false
 DEBUG;TRACE
-L:\TelegramBot\ASPAS\ASPAS\ASPAS\App.xaml
-151212705177
+L:\TelegramBot\ASPAS-Frotend\ASPAS\App.xaml
+14-412004230
 
-12592723056
+12-582115160
 13-1310406943
-MainWindow.xaml;Pages\Blueprints\Blueprint1.xaml;Pages\Blueprints\Blueprint2.xaml;Pages\PageMain.xaml;Styles\ComboBox\ComboBoxItemStyle.xaml;Styles\ComboBox\ComboBoxStyle.xaml;Styles\DataGridCellStyle.xaml;Styles\DataGridIndicatorsStyle.xaml;Styles\IndicatorsTitleTextStyle.xaml;Styles\ItemContainerStyle.xaml;Styles\ScrollBar\ScrollBarLineButtonBottomStyle.xaml;Styles\ScrollBar\ScrollBarLineButtonStyle.xaml;Styles\ScrollBar\ScrollBarPageButtonStyle.xaml;Styles\ScrollBar\ScrollBarThumbStyle.xaml;Styles\ScrollBar\VerticalScrollBarStyle.xaml;
+MainWindow.xaml;Pages\Blueprints\Blueprint1.xaml;Pages\PageMain.xaml;Styles\ComboBox\ComboBoxItemStyle.xaml;Styles\ComboBox\ComboBoxStyle.xaml;Styles\DataGridCellStyle.xaml;Styles\DataGridIndicatorsStyle.xaml;Styles\IndicatorsTitleTextStyle.xaml;Styles\ItemContainerStyle.xaml;Styles\ScrollBar\ScrollBarLineButtonBottomStyle.xaml;Styles\ScrollBar\ScrollBarLineButtonStyle.xaml;Styles\ScrollBar\ScrollBarPageButtonStyle.xaml;Styles\ScrollBar\ScrollBarThumbStyle.xaml;Styles\ScrollBar\VerticalScrollBarStyle.xaml;
 
 False
 

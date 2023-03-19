@@ -4,6 +4,7 @@
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Inter"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{x:Null}" />

@@ -107,20 +107,37 @@
                       CellStyle="{StaticResource CellStyle}"
                           Margin="0,-15,0,0">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="20">
+                        <DataGridTemplateColumn Width="30">
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button 
+                                        <Border 
                                             Name="BtnRealTime"
-                                            Click="BtnRealTime_Click"
                                             Background="Transparent"
-                                            Content="{Binding Name}"
                                             Height="50"
-                                            Margin="0,15,0,0"
-                                        />
+                                            BorderThickness="1"
+                                            BorderBrush="#A3A3a3"
+                                            Margin="0,15,0,0">
+                                            <Grid>
+                                                <TextBlock
+                                                    FontFamily="Inter"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="14"
+                                                    Text="{Binding Name}"
+                                                    Margin="10,0,0,0"/>
+                                                <TextBlock
+                                                    FontFamily="Inter"
+                                                    FontSize="20"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding Arg}"
+                                                    Margin="0,0,10,0"
+                                                    Foreground="#99C24D"/>
+                                            </Grid>
+                                        </Border>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -135,18 +152,19 @@
                       CellStyle="{StaticResource CellStyle}"
                           Margin="0,-15,0,0">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="20">
+                        <DataGridTemplateColumn Width="30">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
                                             Background="Transparent"
                                             BorderThickness="0"
-                                            Click="BtnClickErrorButton"
-                                            Height="50">
+                                            Height="50"
+                                            Margin="0,15,0,0"
+                                            Click="BtnClickShowErrorMessage"
+                                            FontFamily="{Binding Name}">
                                         <Image 
                                             Source="/Resources/ErrorIcon.png"
-                                            VerticalAlignment="Center"
-                                            Height="50"/>
+                                            Width="20"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -155,14 +173,31 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button
-                                            Content="{Binding Name}"
-                                            Name="BtnRecommended"
-                                            Click="BtnRecommended_Click"
-                                            Height="50"
-                                            Margin="0,15,0,0"
+                                        <Border 
+                                            Name="BtnRealTime"
                                             Background="Transparent"
-                                            VerticalAlignment="Center"/>
+                                            Height="50"
+                                            BorderThickness="1"
+                                            BorderBrush="#A3A3a3"
+                                            Margin="0,15,0,0">
+                                            <Grid>
+                                                <TextBlock
+                                                    FontFamily="Inter"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="14"
+                                                    Text="{Binding Name}"
+                                                    Margin="10,0,0,0"/>
+                                                <TextBlock
+                                                    FontFamily="Inter"
+                                                    FontSize="20"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding Arg}"
+                                                    Margin="0,0,10,0"
+                                                    Foreground="#F18F01"/>
+                                            </Grid>
+                                        </Border>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -177,13 +212,17 @@
                           CellStyle="{StaticResource CellStyle}"
                           Margin="0,-15,0,0">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="20">
+                        <DataGridTemplateColumn Width="30">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
                                         Background="Transparent"
-                                        BorderThickness="0">
-                                        <Image Source="/Resources/ErrorIcon.png"/>
+                                        BorderThickness="0"
+                                        Click="BtnClickShowErrorMessage"
+                                        FontFamily="{Binding Name}">
+                                        <Image 
+                                                Source="/Resources/ErrorIcon.png"
+                                                Width="20"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -192,14 +231,31 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button
-                                            Name="BtnProblems"
-                                            Content="{Binding Name}"
-                                            Click="BtnProblems_Click"
-                                            Height="50"
-                                            Margin="0,15,0,0"
+                                        <Border 
+                                            Name="BtnRealTime"
                                             Background="Transparent"
-                                            VerticalAlignment="Center"/>
+                                            Height="50"
+                                            BorderThickness="1"
+                                            BorderBrush="#A3A3a3"
+                                            Margin="0,15,0,0">
+                                            <Grid>
+                                                <TextBlock
+                                                    FontFamily="Inter"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="14"
+                                                    Text="{Binding Name}"
+                                                    Margin="10,0,0,0"/>
+                                                <TextBlock
+                                                    FontFamily="Inter"
+                                                    FontSize="20"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding Arg}"
+                                                    Margin="0,0,10,0"
+                                                    Foreground="#FF2525"/>
+                                            </Grid>
+                                        </Border>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -353,11 +409,12 @@
             Grid.Column="4"
             Grid.ColumnSpan="2"
             Background="#FBFBFB"
-            Visibility="Visible">
+            Visibility="Hidden">
             <StackPanel
                 Margin="15,10,0,0">
                 <Grid>
                     <TextBlock Text="Профиль"
+                               FontFamily="Inter"
                            FontSize="30"/>
                     <Button
                         Background="Transparent"

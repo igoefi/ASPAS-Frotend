@@ -1,28 +1,23 @@
 ﻿using ASPAS.Classes;
+using ASPAS.Classes.BetaModels;
 using ASPAS.Classes.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ASPAS.Pages.Blueprints
 {
     /// <summary>
     /// Логика взаимодействия для Blueprint1.xaml
     /// </summary>
-    public partial class Blueprint1 : Page
+    public partial class Blueprint1 : Page, ISetModels
     {
-        private Dictionary<Button, ErrorClass> _buttons = new Dictionary<Button, ErrorClass>();
+        public List<BetaModel> Models { get; set; }
+
+        private readonly Dictionary<Button, ErrorClass> _buttons = new Dictionary<Button, ErrorClass>();
 
         private const string _alertIconPath = "pack://application:,,,/Resources/AlertIcon.png";
         private byte[] AlertColor { get; } = new byte[3] { 241, 143, 1 };
@@ -31,23 +26,26 @@ namespace ASPAS.Pages.Blueprints
         private byte[] ErrorColor { get; } = new byte[3] { 255, 37, 37 };
 
 
-
-        public Blueprint1()
+        public Blueprint1(List<BetaModel> models)
         {
             InitializeComponent();
 
-            BetaSetup();
+            Models = models;
+
+            var errors = new List<ErrorClass>();
+            foreach (var model in models)
+                errors.Add(model.Error);
+
+            BetaSetup(errors);
             SetButtons();
         }
 
-        private void BetaSetup()
+        private void BetaSetup(List<ErrorClass> errors)
         {
-            var rand = new Random();
-
-            _buttons.Add(FirstButton, new ErrorClass { Message = rand.Next(0, 1000).ToString(), Error = Error.Alert });
-            _buttons.Add(SecondButton, new ErrorClass { Message = rand.Next(0, 1000).ToString(), Error = Error.Alert });
-            _buttons.Add(ThirdButton, new ErrorClass { Message = rand.Next(0, 1000).ToString(), Error = Error.None });
-            _buttons.Add(ThourthButton, new ErrorClass { Message = rand.Next(0, 1000).ToString(), Error = Error.Error });
+            _buttons.Add(FirstButton, errors[0]);
+            _buttons.Add(SecondButton, errors[1]);
+            _buttons.Add(ThirdButton, errors[2]);
+            _buttons.Add(ThourthButton, errors[3]);
         }
 
         private void SetButtons()
@@ -65,8 +63,8 @@ namespace ASPAS.Pages.Blueprints
                 var buttonImage = (Image)button.Content;
 
                 string needPath = error.Error == Error.Alert ? _alertIconPath : _errorIconPath;
-                
-                buttonImage.Source  = new BitmapImage(new Uri(needPath));
+
+                buttonImage.Source = new BitmapImage(new Uri(needPath));
             }
         }
 
@@ -78,7 +76,7 @@ namespace ASPAS.Pages.Blueprints
 
             TxbError.Text = error.Message;
 
-            var colorBrush = error.Error == Error.Alert ? 
+            var colorBrush = error.Error == Error.Alert ?
                 new SolidColorBrush(Color.FromRgb(AlertColor[0], AlertColor[1], AlertColor[2])) :
                 new SolidColorBrush(Color.FromRgb(ErrorColor[0], ErrorColor[1], ErrorColor[2]));
 
