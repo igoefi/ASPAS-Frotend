@@ -19,18 +19,29 @@ namespace ASPAS.Pages
 
         private Dictionary<string, ISetModels> _selectedBlueprints;
 
-        private readonly List<BetaModel> _realTime1 = new List<BetaModel>() {
+        private readonly List<BetaModel> _realTime1 = new List<BetaModel>() 
+        {
             new BetaModel() {Name = "Параметр 1", Arg = "xf", Error = new ErrorClass { Error = Error.Alert, Message = "dasd"} },
             new BetaModel() {Name = "Параметр 2", Arg = "1121f", Error = new ErrorClass { Error = Error.None, Message = "dacvsdsd"}},
             new BetaModel() {Name = "Параметр 3", Arg = "cf1f", Error = new ErrorClass { Error = Error.Error, Message = "daqwsd"}},
             new BetaModel() {Name = "Параметр 4", Arg = "2sd1f", Error = new ErrorClass { Error = Error.None, Message = "d6458asd"}}
         };
-        private readonly List<BetaModel> _realTime2 = new List<BetaModel>() {
+
+        private readonly List<BetaModel> _realTime2 = new List<BetaModel>() 
+        {
             new BetaModel() {Name = "Параметр 1", Arg = "xf", Error = new ErrorClass { Error = Error.Error, Message = "dasd"} },
             new BetaModel() {Name = "Параметр 2", Arg = "1121f", Error = new ErrorClass { Error = Error.Error, Message = "dacvsdsd"}},
             new BetaModel() {Name = "Параметр 4", Arg = "cf1f", Error = new ErrorClass { Error = Error.Alert, Message = "daqwsd"}},
             new BetaModel() {Name = "Параметр 4", Arg = "2sd1f", Error = new ErrorClass { Error = Error.Error, Message = "d6458asd"}}
         };
+
+        private readonly List<ArchiveClass> _archiveClasses = new List<ArchiveClass>
+        {
+            new ArchiveClass(){ Date = "12.06", Errors = new List<BetaModel>{new BetaModel() { Name = "first", Arg = "High"}, new BetaModel() { Name = "second", Arg = "medium"}}},
+            new ArchiveClass(){ Date = "13.06", Errors = new List<BetaModel>{new BetaModel() { Name = "first", Arg = "High"}, new BetaModel() { Name = "second", Arg = "medium"}}},
+            new ArchiveClass(){ Date = "14.06", Errors = new List<BetaModel>{new BetaModel() { Name = "first", Arg = "High"}, new BetaModel() { Name = "second", Arg = "medium"}}}
+        };
+
         #endregion
 
         public PageMain()
@@ -123,6 +134,7 @@ namespace ASPAS.Pages
 
             CmbBoxManufactory.IsEnabled = true;
             ProfileLogin.Visibility = Visibility.Hidden;
+            DataGridArchive.ItemsSource = _archiveClasses;
         }
 
         private void BtnClickExitProfileLogin(object sender, RoutedEventArgs e) =>

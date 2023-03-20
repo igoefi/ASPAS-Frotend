@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-L:\TelegramBot\ASPAS\ASPAS\ASPAS\obj\Debug\
+L:\TelegramBot\ASPAS-Frotend\ASPAS\obj\Debug\
 ASPAS
 none
 false
 DEBUG;TRACE
-L:\TelegramBot\ASPAS\ASPAS\ASPAS\App.xaml
+L:\TelegramBot\ASPAS-Frotend\ASPAS\App.xaml
 14-412004230
 
-131630763518
+14765943470
 13-1310406943
 MainWindow.xaml;Pages\Blueprints\Blueprint1.xaml;Pages\PageMain.xaml;Styles\ComboBox\ComboBoxItemStyle.xaml;Styles\ComboBox\ComboBoxStyle.xaml;Styles\DataGridCellStyle.xaml;Styles\DataGridIndicatorsStyle.xaml;Styles\IndicatorsTitleTextStyle.xaml;Styles\ItemContainerStyle.xaml;Styles\ScrollBar\ScrollBarLineButtonBottomStyle.xaml;Styles\ScrollBar\ScrollBarLineButtonStyle.xaml;Styles\ScrollBar\ScrollBarPageButtonStyle.xaml;Styles\ScrollBar\ScrollBarThumbStyle.xaml;Styles\ScrollBar\VerticalScrollBarStyle.xaml;
 
-True
+False
 

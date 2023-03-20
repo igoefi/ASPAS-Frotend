@@ -64,6 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\BetaModels\BetaModel.cs" />
+    <Compile Include="Classes\BetaModels\ArchiveClass.cs" />
     <Compile Include="Classes\Enums\ErrorEnum.cs" />
     <Compile Include="Classes\ErrorClass.cs" />
     <Compile Include="Classes\Frotend\Helper\FrameNav.cs" />

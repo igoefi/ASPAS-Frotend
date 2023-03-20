@@ -163,7 +163,7 @@
                                             Click="BtnClickShowErrorMessage"
                                             FontFamily="{Binding Name}">
                                         <Image 
-                                            Source="/Resources/ErrorIcon.png"
+                                            Source="/Resources/AlertIcon.png"
                                             Width="20"/>
                                     </Button>
                                 </DataTemplate>
@@ -216,13 +216,15 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        Click="BtnClickShowErrorMessage"
-                                        FontFamily="{Binding Name}">
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Height="50"
+                                            Margin="0,15,0,0"
+                                            Click="BtnClickShowErrorMessage"
+                                            FontFamily="{Binding Name}">
                                         <Image 
-                                                Source="/Resources/ErrorIcon.png"
-                                                Width="20"/>
+                                            Source="/Resources/ErrorIcon.png"
+                                            Width="20"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -706,8 +708,8 @@
             Background="#FBFBFB"
             Visibility="Hidden">
             <StackPanel
-                
                 Margin="15,10,0,0">
+
                 <Grid>
                     <TextBlock Text="Архив"
                            FontSize="30"/>
@@ -723,6 +725,63 @@
 
                     </Button>
                 </Grid>
+
+                <ScrollViewer 
+                    Name="ArchivesGrid"
+                    Visibility="Visible">
+
+                    <DataGrid Name="DataGridArchive"
+                              Style="{StaticResource IndicatorsDataGridStyle}"
+                              CellStyle="{StaticResource CellStyle}"
+                              FontFamily="Inter">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Date}"
+                                                       FontSize="20"
+                                                       Margin="0,5,0,0"/>
+                                            <DataGrid ItemsSource="{Binding Errors}"
+                                                      Style="{StaticResource IndicatorsDataGridStyle}"
+                                                      CellStyle="{StaticResource CellStyle}">
+                                                <DataGrid.Columns>
+                                                    <DataGridTemplateColumn Width="*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Border
+                                                                    BorderThickness="1"
+                                                                    BorderBrush="#A3A3A3">
+                                                                    <Grid>
+                                                                        <TextBlock
+                                                                                FontFamily="Inter"
+                                                                                HorizontalAlignment="Left"
+                                                                                VerticalAlignment="Center"
+                                                                                FontSize="14"
+                                                                                Text="{Binding Name}"
+                                                                                Margin="10,0,0,0"/>
+                                                                        <TextBlock
+                                                                                FontFamily="Inter"
+                                                                                FontSize="20"
+                                                                                HorizontalAlignment="Right"
+                                                                                VerticalAlignment="Center"
+                                                                                Text="{Binding Arg}"
+                                                                                Margin="0,0,10,0"
+                                                                                Foreground="#F18F01"/>
+                                                                   </Grid>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom"

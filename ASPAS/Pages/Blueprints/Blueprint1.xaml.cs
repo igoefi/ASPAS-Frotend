@@ -53,11 +53,10 @@ namespace ASPAS.Pages.Blueprints
             foreach (var button in _buttons.Keys)
             {
                 var error = _buttons[button];
-
                 if (error.Error == Error.None)
                 {
                     button.Visibility = Visibility.Hidden;
-                    return;
+                    continue;
                 }
 
                 var buttonImage = (Image)button.Content;
